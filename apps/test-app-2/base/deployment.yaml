@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-app-2
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - name: test-app-2-nginx
+          image: nginx
+          ports:
+            - containerPort: 80

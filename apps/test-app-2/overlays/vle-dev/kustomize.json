@@ -1,0 +1,5 @@
+{
+    "appName": "test-app-2",
+    "destNamespace": "vle-dev",
+    "srcPath": "apps/test-app-2/overlays/vle-dev"
+}

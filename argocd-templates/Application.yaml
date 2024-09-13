@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test-app-1
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:krzysztofsol/argocd-multiple-source-public.git
+    targetRevision: HEAD
+    path: apps/test-app-1/overlays/vle-dev
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: vle-dev
