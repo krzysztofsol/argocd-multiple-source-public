@@ -13,6 +13,7 @@ spec:
         revision: HEAD
         files:
           - path: "apps/**/overlays/vle-dev/kustomize.json"
+          - path: "apps/**/overlays/vle-dev/bitnami-redis/helm.json"
   template:
     metadata:
       labels:
@@ -22,10 +23,17 @@ spec:
       namespace: argocd
     spec:
       project: default
-      source:
-        path: "{{ .srcPath }}"
-        repoURL: https://github.com/krzysztofsol/argocd-multiple-source-public.git
-        targetRevision: HEAD
+      sources:
+        - repoURL: https://github.com/krzysztofsol/argocd-multiple-source-public.git
+          path: "{{ .srcPath }}"
+          targetRevision: "HEAD"
+          helm:
+            valueFiles:
+              - "app/bitnami-redis/common-values.yaml"
+              - "values.yaml"
+        - repoURL: https://github.com/krzysztofsol/argocd-multiple-source-public.git
+          path: "{{ .srcPath }}"
+          targetRevision: HEAD
       destination:
         name: in-cluster
         namespace: "{{ .destNamespace }}"
