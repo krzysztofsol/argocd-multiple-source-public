@@ -9,10 +9,10 @@ spec:
   goTemplate: true
   generators:
     - git:
-        repoURL: git@github.com:krzysztofsol/argocd-multiple-source-public.git
+        repoURL: https://github.com/krzysztofsol/argocd-multiple-source-public.git
         revision: HEAD
         files:
-          - path: apps/**/overlays/vle-dev/kustomize.json
+          - path: "apps/**/overlays/vle-dev/kustomize.json"
   template:
     metadata:
       labels:
@@ -24,10 +24,10 @@ spec:
       project: default
       source:
         path: "{{ .srcPath }}"
-        repoURL: git@github.com:krzysztofsol/argocd-multiple-source-public.git
+        repoURL: https://github.com/krzysztofsol/argocd-multiple-source-public.git
         targetRevision: HEAD
       destination:
-        name: https://kubernetes.default.svc
+        name: in-cluster
         namespace: "{{ .destNamespace }}"
       syncPolicy:
         automated:
