@@ -12,7 +12,7 @@ spec:
         repoURL: https://github.com/krzysztofsol/argocd-multiple-source-public.git
         revision: HEAD
         files:
-          - path: "apps/**/overlays/vle-dev/kustomize.json"
+          - path: apps/bitnami-redis/**/vle-dev/helm.json
   template:
     metadata:
       labels:
@@ -21,11 +21,15 @@ spec:
       name: "vle-dev-{{ .appName }}"
       namespace: argocd
     spec:
-      project: default
+      project: vle-dev
       source:
         path: "{{ .srcPath }}"
         repoURL: https://github.com/krzysztofsol/argocd-multiple-source-public.git
-        targetRevision: HEAD
+        targetRevision: '{{ default "HEAD" .srcTargetRevision }}'
+        helm:
+          valueFiles:
+            - "../../common-values.yaml"
+            - "values.yaml"
       destination:
         name: in-cluster
         namespace: "{{ .destNamespace }}"
@@ -34,7 +38,3 @@ spec:
           allowEmpty: true
           prune: true
           selfHeal: false
-        retry:
-          limit: 1
-          backoff:
-            factor: 1

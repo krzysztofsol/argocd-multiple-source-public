@@ -1,5 +1,5 @@
 {
     "appName": "bitnami-redis-test-app-2",
     "destNamespace": "vle-dev",
-    "srcPath": "apps/test-app-2/overlays/vle-dev/bitnami-redis"
+    "srcPath": "apps/bitnami-redis/test-app-2/vle-dev"
 }
