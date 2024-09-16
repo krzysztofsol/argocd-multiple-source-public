@@ -24,7 +24,7 @@ bitnami-redis:
     defaultStorageClass: ""
     storageClass: ""
     redis:
-      password: ""
+      password: "redispassword"
     ## Compatibility adaptations for Kubernetes platforms
     ##
     compatibility:
@@ -103,7 +103,7 @@ bitnami-redis:
   image:
     registry: docker.io
     repository: bitnami/redis
-    tag: 7.2.5-debian-12-r2
+    tag: 7.4.0-debian-12-r4
     digest: ""
     ## Specify a imagePullPolicy
     ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -172,7 +172,7 @@ bitnami-redis:
   master:
     ## @param master.count Number of Redis&reg; master instances to deploy (experimental, requires additional configuration)
     ##
-    count: 0
+    count: 1
     ## @param master.revisionHistoryLimit The number of old history to retain to allow rollback
     ## NOTE: Explicitly setting this field to 0, will result in cleaning up all the history, breaking ability to rollback
     revisionHistoryLimit: 10
@@ -184,7 +184,9 @@ bitnami-redis:
     ## Commands will be completely disabled by renaming each to an empty string.
     ## ref: https://redis.io/topics/security#disabling-of-specific-commands
     ##
-    disableCommands: []
+    disableCommands:
+      - FLUSHDB
+      - FLUSHALL
     ## @param master.command Override default container command (useful when using custom images)
     ##
     command: []
@@ -630,7 +632,7 @@ bitnami-redis:
     ##
     pdb:
       create: true
-      minAvailable: 1
+      minAvailable: ""
       maxUnavailable: ""
   ## @section Redis&reg; replicas configuration parameters
   ##
@@ -653,7 +655,9 @@ bitnami-redis:
     ## Commands will be completely disabled by renaming each to an empty string.
     ## ref: https://redis.io/topics/security#disabling-of-specific-commands
     ##
-    disableCommands: []
+    disableCommands:
+      - FLUSHDB
+      - FLUSHALL
     ## @param replica.command Override default container command (useful when using custom images)
     ##
     command: []
@@ -1113,7 +1117,7 @@ bitnami-redis:
     ##
     pdb:
       create: true
-      minAvailable: 2
+      minAvailable: ""
       maxUnavailable: ""
   ## @section Redis&reg; Sentinel configuration parameters
   ##
@@ -1137,7 +1141,7 @@ bitnami-redis:
     image:
       registry: docker.io
       repository: bitnami/redis-sentinel
-      tag: 7.2.5-debian-12-r2
+      tag: 7.4.0-debian-12-r5
       digest: ""
       ## Specify a imagePullPolicy
       ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -1688,7 +1692,7 @@ bitnami-redis:
     image:
       registry: docker.io
       repository: bitnami/redis-exporter
-      tag: 1.61.0-debian-12-r2
+      tag: 1.63.0-debian-12-r0
       digest: ""
       pullPolicy: IfNotPresent
       ## Optionally specify an array of imagePullSecrets.
@@ -2060,7 +2064,7 @@ bitnami-redis:
     image:
       registry: docker.io
       repository: bitnami/os-shell
-      tag: 12-debian-12-r24
+      tag: 12-debian-12-r30
       digest: ""
       pullPolicy: IfNotPresent
       ## Optionally specify an array of imagePullSecrets.
@@ -2100,6 +2104,14 @@ bitnami-redis:
       seLinuxOptions: {}
       runAsUser: 0
 
+    ## @param volumePermissions.extraEnvVars Array with extra environment variables to add to volume permissions init container.
+    ## e.g:
+    ## extraEnvVars:
+    ##   - name: FOO
+    ##     value: "bar"
+    ##
+    extraEnvVars: []
+
   ## Kubectl InitContainer
   ## used by Sentinel to update the isMaster label on the Redis(TM) pods
   ##
@@ -2116,7 +2128,7 @@ bitnami-redis:
     image:
       registry: docker.io
       repository: bitnami/kubectl
-      tag: 1.30.2-debian-12-r2
+      tag: 1.31.1-debian-12-r1
       digest: ""
       ## Specify a imagePullPolicy
       ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -2186,7 +2198,7 @@ bitnami-redis:
     image:
       registry: docker.io
       repository: bitnami/os-shell
-      tag: 12-debian-12-r24
+      tag: 12-debian-12-r30
       digest: ""
       pullPolicy: IfNotPresent
       ## Optionally specify an array of imagePullSecrets.
@@ -2232,4 +2244,3 @@ bitnami-redis:
     suffix: ""
     annotationKey: external-dns.alpha.kubernetes.io/
     additionalAnnotations: {}
-
