@@ -24,7 +24,7 @@ bitnami-redis:
     defaultStorageClass: ""
     storageClass: ""
     redis:
-      password: "redispassword"
+      password: ""
     ## Compatibility adaptations for Kubernetes platforms
     ##
     compatibility:
@@ -2244,3 +2244,4 @@ bitnami-redis:
     suffix: ""
     annotationKey: external-dns.alpha.kubernetes.io/
     additionalAnnotations: {}
+
