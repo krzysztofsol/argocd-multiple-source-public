@@ -3,7 +3,7 @@ kind: ApplicationSet
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "0"
-  name: vle-dev
+  name: vle-dev-redis
   namespace: argocd
 spec:
   goTemplate: true
@@ -21,7 +21,7 @@ spec:
       name: "vle-dev-{{ .appName }}"
       namespace: argocd
     spec:
-      project: vle-dev
+      project: default
       source:
         path: "{{ .srcPath }}"
         repoURL: https://github.com/krzysztofsol/argocd-multiple-source-public.git
