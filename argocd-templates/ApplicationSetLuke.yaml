@@ -28,7 +28,7 @@ spec:
       source:
         path: "{{ .srcPath }}"
         repoURL: https://github.com/krzysztofsol/argocd-multiple-source-public.git
-        targetRevision: DO-2579
+        targetRevision: HEAD
       destination:
         name: in-cluster
         namespace: "{{ .destNamespace }}"
@@ -50,3 +50,4 @@ spec:
             - ".../bitnami-redis/common-values.yaml"
             - values.yaml
           ignoreMissingValueFiles: true
+    {{- end }}
