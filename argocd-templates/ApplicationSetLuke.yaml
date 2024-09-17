@@ -1,0 +1,52 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+  name: luke-test
+  namespace: argocd
+spec:
+  goTemplate: true
+  generators:
+    - git:
+        repoURL: https://github.com/krzysztofsol/argocd-multiple-source-public.git
+        revision: HEAD
+        files:
+          - path: apps3/**/helm/helm.json
+          - path: apps3/**/kustomize/kustomize.json
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/managed-by: argocd
+        app.kubernetes.io/name: "{{ .appName }}"
+      annotations:
+        argocd.argoproj.io/manifest-generate-paths: '.;../../base;{{ default "" .additionalManifestGeneratePaths }}'
+      name: "luke-test-{{ .appName }}"
+      namespace: argocd
+    spec:
+      project: default
+      source:
+        path: "{{ .srcPath }}"
+        repoURL: https://github.com/krzysztofsol/argocd-multiple-source-public.git
+        targetRevision: DO-2579
+      destination:
+        name: in-cluster
+        namespace: "{{ .destNamespace }}"
+      syncPolicy:
+        automated:
+          allowEmpty: true
+          prune: true
+          selfHeal: false
+        retry:
+          limit: 1
+          backoff:
+            factor: 1
+  templatePatch: |
+    {{- if .helm }}
+    spec:
+      source:
+        helm:
+          valueFiles:
+            - ".../bitnami-redis/common-values.yaml"
+            - values.yaml
+          ignoreMissingValueFiles: true
