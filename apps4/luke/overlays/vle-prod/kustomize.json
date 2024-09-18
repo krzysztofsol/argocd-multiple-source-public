@@ -1,0 +1,5 @@
+{
+    "appName": "luke",
+    "destNamespace": "vle-prod",
+    "srcPath": "apps/luke/kustomize/overlays/vle-prod"
+}

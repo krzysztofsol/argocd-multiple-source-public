@@ -1,0 +1,3 @@
+bitnami-redis:
+  master:
+    revisionHistoryLimit: 2

@@ -1,0 +1,6 @@
+{
+    "appName": "luke-redis-helm",
+    "destNamespace": "vle-dev",
+    "srcPath": "apps/luke/vle-dev/bitnami-redis",
+    "helm": true
+}
