@@ -1,0 +1,5 @@
+{
+    "appName": "test-app-nginx-kustomize",
+    "destNamespace": "vle-dev",
+    "srcPath": "apps4/test-app/overlays/vle-dev"
+}
