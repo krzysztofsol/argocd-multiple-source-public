@@ -1,5 +1,5 @@
 {
     "appName": "luke",
     "destNamespace": "vle-dev",
-    "srcPath": "apps/luke/overlays/vle-dev"
+    "srcPath": "apps4/luke/overlays/vle-dev"
 }
