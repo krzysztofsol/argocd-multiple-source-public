@@ -1,3 +1,5 @@
 bitnami-redis:
   auth:
     password: "bitnami-redis-test-app-1-password"
+  replica:
+    replicaCount: 1
