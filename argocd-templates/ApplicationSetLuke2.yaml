@@ -3,7 +3,7 @@ kind: ApplicationSet
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "0"
-  name: luke-test
+  name: luke-test2
   namespace: argocd
 spec:
   goTemplate: true
