@@ -1,6 +1,0 @@
-{
-    "appName": "luke-nginx-helm",
-    "destNamespace": "vle-dev",
-    "srcPath": "apps3/luke/helm/",
-    "helm": true
-}

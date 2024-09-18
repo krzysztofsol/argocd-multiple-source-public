@@ -1,5 +1,5 @@
 {
     "appName": "luke-nginx-kustomize",
     "destNamespace": "vle-dev",
-    "srcPath": "apps3/luke/kustomize/"
+    "srcPath": "apps3/luke/kustomize/overlays/vle-dev"
 }

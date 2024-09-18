@@ -1,0 +1,6 @@
+{
+    "appName": "luke-redis-helm",
+    "destNamespace": "vle-prod",
+    "srcPath": "apps3/luke/helm/vle-prod",
+    "helm": true
+}

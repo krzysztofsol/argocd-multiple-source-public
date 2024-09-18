@@ -12,8 +12,8 @@ spec:
         repoURL: https://github.com/krzysztofsol/argocd-multiple-source-public.git
         revision: HEAD
         files:
-          - path: apps3/**/helm/helm.json
-          - path: apps3/**/kustomize/kustomize.json
+          - path: apps3/**/helm/vle-dev/helm.json
+          - path: apps3/**/kustomize/overlays/vle-dev//kustomize.json
   template:
     metadata:
       labels:
